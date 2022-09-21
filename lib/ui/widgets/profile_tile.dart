@@ -25,18 +25,32 @@ class ProfileTile extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+           crossAxisAlignment: CrossAxisAlignment.center,
            children: [
             Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 SizedBox(
                   height: 70,
                   child: ClipOval(
                       child: Image.network(avatarUrl)),
                 ),
-                Text(name),
+                Text(name, style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w400
+                ),),
               ]
             ),
-             Text(bio),
+             Padding(
+               padding: const EdgeInsets.symmetric(horizontal: 20.0),
+               child: Container(
+                 height: 100,
+                 width: 1,
+                 color: Colors.grey,
+               ),
+             ),
+             Expanded(child: Text(bio)),
            ],
           ),
         ),
