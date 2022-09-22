@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:log/app/app.locator.dart';
+import 'package:log/ui/theme/theme_provider.dart';
 import 'package:log/ui/widgets/constants.dart';
 
 class ProfileTile extends StatelessWidget {
@@ -15,10 +17,11 @@ class ProfileTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = locator<ThemeProvider>();
     return SizedBox(
       height: 150,
       child: Card(
-        color: Constants.light,
+        color: themeProvider.userColorMode(Constants.grey, Constants.light),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10)
         ),
@@ -36,7 +39,7 @@ class ProfileTile extends StatelessWidget {
                   child: ClipOval(
                       child: Image.network(avatarUrl)),
                 ),
-                Text(name, style: TextStyle(
+                Text(name, style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w400
                 ),),

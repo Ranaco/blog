@@ -4,7 +4,7 @@ class ThemePreferences {
 
   Future<bool> loadTheme() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    bool isDark = sharedPreferences.getBool('isDark') ?? false;
+    bool isDark = sharedPreferences.getBool('isDark') ?? true;
     return isDark;
   }
 
