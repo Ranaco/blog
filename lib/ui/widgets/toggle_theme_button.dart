@@ -14,7 +14,6 @@ class ToggleThemeButton extends StatelessWidget{
         width: 100,
         height: 40,
         decoration: BoxDecoration(
-          color: isDark ? Constants.darkGrey : Constants.light,
           borderRadius: const BorderRadius.all(Radius.circular(30))
         ),
       ),

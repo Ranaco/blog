@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:log/app/app.locator.dart';
 import 'package:log/app/app.router.dart';
 import 'package:log/ui/theme/theme_provider.dart';
 import 'package:log/ui/widgets/app_icon/app_icon.dart';
@@ -32,7 +31,6 @@ class _HomeScaffold extends State<HomeScaffold>{
   Widget build(BuildContext context){
 
     return ViewModelBuilder<HomeScaffoldModel>.reactive(viewModelBuilder: () => HomeScaffoldModel(), builder: (context, model, child){
-      final themeProvider = locator<ThemeProvider>();
       return AutoTabsRouter.tabBar(
         builder: (context, child, pageController) {
           takeToPage(int val) {
@@ -46,7 +44,7 @@ class _HomeScaffold extends State<HomeScaffold>{
             drawerEnableOpenDragGesture: true,
             drawerScrimColor: Colors.transparent,
             extendBody: true,
-            backgroundColor: themeProvider.userColorMode(Constants.darkGrey, Constants.scaffoldGrey),
+            backgroundColor: ThemeProvider.useColorMode(Constants.nord0, Constants.ice2),
             drawer: const  CustomDrawer(),
             appBar: CustomAppbar(height: 70, currentIndex: model.currentIndex,),
             body: Padding(
@@ -57,7 +55,7 @@ class _HomeScaffold extends State<HomeScaffold>{
               elevation: 0,
               notchMargin: 5,
               shape: const CircularNotchedRectangle(),
-              color: themeProvider.userColorMode(Constants.grey, Constants.bottomBarGrey),
+              color: ThemeProvider.useColorMode(Constants.nord2, Constants.ice1),
               child: SizedBox(
                 height: 70,
                 child: SizedBox(
@@ -68,22 +66,22 @@ class _HomeScaffold extends State<HomeScaffold>{
                       IconButton(
                           onPressed: (){
                             takeToPage(0);
-                          }, icon: AppIcon(AppIcons.home, color: model.currentIndex == 0 ? Constants.darkGrey : Colors.grey, )),
+                          }, icon: AppIcon(AppIcons.home, color: model.currentIndex == 0 ? Constants.nord0 : Colors.grey, )),
                       IconButton(
                           onPressed: (){
                             takeToPage(1);
-                          }, icon: AppIcon(AppIcons.favorite, color: model.currentIndex == 1 ? Constants.darkGrey : Colors.grey,)),
+                          }, icon: AppIcon(AppIcons.favorite, color: model.currentIndex == 1 ? Constants.nord0 : Colors.grey,)),
                       const SizedBox(
                         width: 10,
                       ),
                       IconButton(
                           onPressed: (){
                             takeToPage(2);
-                          }, icon: AppIcon(AppIcons.bell, color: model.currentIndex == 2 ? Constants.darkGrey : Colors.grey,)),
+                          }, icon: AppIcon(AppIcons.bell, color: model.currentIndex == 2 ? Constants.nord0 : Colors.grey,)),
                       IconButton(
                           onPressed: (){
                             takeToPage(3);
-                          }, icon: AppIcon(AppIcons.options, color: model.currentIndex == 3 ? Constants.darkGrey : Colors.grey,))
+                          }, icon: AppIcon(AppIcons.options, color: model.currentIndex == 3 ? Constants.nord0 : Colors.grey,))
                     ],
                   ),
                 ),
@@ -92,8 +90,8 @@ class _HomeScaffold extends State<HomeScaffold>{
             floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
             floatingActionButton: FloatingActionButton(
               onPressed: (){},
-              backgroundColor: themeProvider.userColorMode(Constants.grey, Constants.lightBlue),
-              child: Icon(Icons.add, color: themeProvider.userColorMode(Constants.lightGrey, Constants.grey),),
+              backgroundColor: ThemeProvider.useColorMode(Constants.nord2, Constants.blue),
+              child: Icon(Icons.add, color: ThemeProvider.useColorMode(Constants.ice2, Constants.nord2),),
             ),
           );
         },

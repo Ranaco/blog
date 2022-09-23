@@ -9,6 +9,7 @@ import 'package:log/ui/widgets/constants.dart';
 import 'package:log/ui/widgets/custom_bottom_sheet.dart';
 import 'package:log/ui/widgets/profile_tile.dart';
 import 'package:log/ui/widgets/settings_tile.dart';
+import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 
 class SettingsPageView extends StatelessWidget {
@@ -16,7 +17,7 @@ class SettingsPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = locator<ThemeProvider>();
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return ViewModelBuilder<SettingsPageViewModel>.reactive(
         viewModelBuilder: () => SettingsPageViewModel(),
         builder: (context, model, child) {
@@ -50,15 +51,15 @@ class SettingsPageView extends StatelessWidget {
                               children: [
                                 ListTile(
                                   title: const Text("Light"),
-                                  leading: AppIcon(AppIcons.sun, size: 30, color: themeProvider.userColorMode(Constants.yellow, Constants.darkGrey),),
+                                  leading: AppIcon(AppIcons.sun, size: 30, color: ThemeProvider.useColorMode(Colors.yellow, Constants.nord0),),
                                   shape: const RoundedRectangleBorder(
                                       borderRadius: BorderRadius.only(
                                           topRight: Radius.circular(10),
                                           topLeft: Radius.circular(10))
                                   ),
-                                  tileColor: themeProvider.userColorMode(Constants.grey, Constants.lightGrey),
+                                  tileColor: ThemeProvider.useColorMode(Constants.nord2, Constants.ice2),
                                   onTap: (){
-                                    themeProvider.setDark(false);
+                                    themeProvider.changeTheme(false);
                                     model.popPage();
                                   },
                                 ),
@@ -67,20 +68,20 @@ class SettingsPageView extends StatelessWidget {
                                         .of(context)
                                         .size
                                         .width,
-                                    color: themeProvider.userColorMode(Constants.darkGrey, Constants.scaffoldGrey),
+                                    color: ThemeProvider.useColorMode(Constants.nord0, Constants.ice0),
                                     height: 2
                                 ),
                                 ListTile(
                                   title: const Text("Dark"),
-                                  leading: AppIcon(AppIcons.moon, size: 20, color: themeProvider.userColorMode(Constants.lightGrey, Constants.darkGrey),),
+                                  leading: AppIcon(AppIcons.moon, size: 20, color: ThemeProvider.useColorMode(Constants.ice2, Constants.nord0),),
                                   shape: const RoundedRectangleBorder(
                                       borderRadius: BorderRadius.only(
                                           bottomRight: Radius.circular(10),
                                           bottomLeft: Radius.circular(10))
                                   ),
-                                  tileColor: themeProvider.userColorMode(Constants.grey, Constants.lightGrey),
+                                  tileColor: ThemeProvider.useColorMode(Constants.nord2, Constants.ice2),
                                   onTap: (){
-                                    themeProvider.setDark(true);
+                                    themeProvider.changeTheme(true);
                                     model.popPage();
                                   },
                                 ),
@@ -103,13 +104,13 @@ class SettingsPageView extends StatelessWidget {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10)
                                   ),
-                                  tileColor: themeProvider.userColorMode(Constants.grey, Constants.lightGrey),
+                                  tileColor: ThemeProvider.useColorMode(Constants.nord2, Constants.ice2),
                                 )
                               ],
                             );
                           });
                         },
-                        icon: themeProvider.mode(AppIcons.moon, AppIcons.sun),
+                        icon: ThemeProvider.mode(AppIcons.moon, AppIcons.sun),
                         name: "Theme")
                   ]
               ),

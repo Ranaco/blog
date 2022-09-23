@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:log/app/app.locator.dart';
 import 'package:log/ui/home_page/home_page_viewmodel.dart';
 import 'package:log/ui/theme/theme_provider.dart';
 import 'package:log/ui/widgets/constants.dart';
 import 'package:log/ui/widgets/post.dart';
+import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 
 
@@ -86,38 +86,39 @@ class CustomTabs extends StatefulWidget {
 class _CustomTabsState extends State<CustomTabs> {
   @override
   Widget build(BuildContext context) {
-    final themeProvider = locator<ThemeProvider>();
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        height: 35,
-        width: 120,
-        decoration: BoxDecoration(
-            boxShadow: widget.isActive
-                ? [
-                    BoxShadow(
-                        color: themeProvider.userColorMode(Constants.darkGrey, Colors.grey),
-                        blurRadius: 4,
-                        offset: const Offset(1, 2),
-                        spreadRadius: 2),
-                  ]
-                : [],
-            borderRadius: BorderRadius.circular(14),
-            color: widget.isActive ? Constants.grey : Colors.transparent,
-            border: Border.all(color: themeProvider.userColorMode(Colors.grey.shade600, Colors.black), width: 0.2)),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Center(
-            child: Text(
-              widget.label,
-              style: TextStyle(
-                  color:
-                      widget.isActive ? Constants.bottomBarGrey : themeProvider.userColorMode(Colors.grey, Colors.black)),
+    return Consumer(builder: (context, ThemeProvider themeProvider, child){
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          height: 35,
+          width: 120,
+          decoration: BoxDecoration(
+              boxShadow: widget.isActive
+                  ? [
+                BoxShadow(
+                    color: ThemeProvider.useColorMode(Constants.nord0, Colors.grey),
+                    blurRadius: 4,
+                    offset: const Offset(1, 2),
+                    spreadRadius: 2),
+              ]
+                  : [],
+              borderRadius: BorderRadius.circular(14),
+              color: widget.isActive ? ThemeProvider.useColorMode(Constants.nord3, Colors.grey) : Colors.transparent,
+              border: Border.all(color: ThemeProvider.useColorMode(Colors.grey.shade600, Colors.black), width: 0.2)),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+              child: Text(
+                widget.label,
+                style: TextStyle(
+                    color:
+                    widget.isActive ? Constants.ice2 : ThemeProvider.useColorMode(Colors.grey, Colors.black)),
+              ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

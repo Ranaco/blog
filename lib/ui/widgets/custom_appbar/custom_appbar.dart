@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:log/app/app.locator.dart';
 import 'package:log/ui/theme/theme_provider.dart';
 import 'package:log/ui/widgets/app_icon/app_icon.dart';
 import 'package:log/ui/widgets/app_icon/app_icons.dart';
@@ -12,7 +11,6 @@ class CustomAppbar extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = locator<ThemeProvider>();
     return Padding(
       padding: const EdgeInsets.only(top: 10),
       child: SizedBox(
@@ -28,7 +26,7 @@ class CustomAppbar extends StatelessWidget with PreferredSizeWidget {
                           ? Scaffold.of(context).closeDrawer()
                           : Scaffold.of(context).openDrawer();
                     },
-                    child: AppIcon(AppIcons.menu, color: themeProvider.userColorMode(Constants.lightGrey, Constants.darkGrey),))) : const SizedBox(),
+                    child: AppIcon(AppIcons.menu, color: ThemeProvider.useColorMode(Constants.ice1, Constants.nord0),))) : const SizedBox(),
           ]),
         ),
       ),
