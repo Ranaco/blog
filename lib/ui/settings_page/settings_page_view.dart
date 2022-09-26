@@ -26,13 +26,12 @@ class SettingsPageView extends StatelessWidget {
             child: ScrollConfiguration(
               behavior: RemoveGlow(),
               child: ListView(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
                   children: [
                     const ProfileTile(name: "Tris",
                         bio: "This is the only thing that I know about us",
                         avatarUrl: "https://picsum.photos/300/"),
                     const SizedBox(
-                      height: 10,
+                      height: 20,
                     ),
                     SettingsTile(
                         callBack: () {

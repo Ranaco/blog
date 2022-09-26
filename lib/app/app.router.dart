@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:injectable/injectable.dart';
+import 'package:log/ui/blog_page/blog_page_view.dart';
 import 'package:log/ui/edit_profile_page/edit_profile_page_view.dart';
 import 'package:log/ui/home_page/home_page_view.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,11 @@ part './app.router.gr.dart';
         page: EditProfilePageView,
         path: 'editProfile',
         name: 'EditProfilePageRoute'
+    ),
+    CustomRoute(
+      page: BlogPageView,
+      path: 'blog',
+      name: 'BlogPageRoute'
     ),
     CustomRoute(
       path: '/',

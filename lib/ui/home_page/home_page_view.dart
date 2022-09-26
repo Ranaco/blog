@@ -12,6 +12,13 @@ class HomePageView extends StatelessWidget {
   const HomePageView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    const images = [
+      'assets/images/img1.jpeg',
+      'assets/images/img2.jpeg',
+      'assets/images/img3.jpeg',
+      'assets/images/img4.jpeg',
+      'assets/images/img5.jpeg',
+    ];
     return ViewModelBuilder<HomePageViewModel>.reactive(
         viewModelBuilder: () => HomePageViewModel(),
         builder: (context, model, child) {
@@ -59,11 +66,21 @@ class HomePageView extends StatelessWidget {
                   crossAxisCount: 2,
                   mainAxisSpacing: 4,
                   crossAxisSpacing: 4,
-                  children: List.generate(5, (index) {
+                  children: List.generate(images.length, (index) {
                     return StaggeredGridTile.fit(
                         crossAxisCellCount: 1,
-                        child: Post(
-                            width: MediaQuery.of(context).size.width * 0.1));
+                        child: Hero(
+                          tag: images[index],
+                          child: Material(
+                            color: Colors.transparent,
+                            child: Post(
+                              callback: (){
+                                model.takeToProfilePage(images[index]);
+                              },
+                              postString: images[index],
+                                width: MediaQuery.of(context).size.width * 0.1),
+                          ),
+                        ));
                   }),
                 ),
               ),

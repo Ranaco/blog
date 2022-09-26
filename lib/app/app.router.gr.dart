@@ -25,6 +25,18 @@ class _$AppRouter extends RootStackRouter {
         barrierDismissible: false,
       );
     },
+    BlogPageRoute.name: (routeData) {
+      final args = routeData.argsAs<BlogPageRouteArgs>();
+      return CustomPage<dynamic>(
+        routeData: routeData,
+        child: BlogPageView(
+          key: args.key,
+          tag: args.tag,
+        ),
+        opaque: true,
+        barrierDismissible: false,
+      );
+    },
     AppScaffold.name: (routeData) {
       return CustomPage<dynamic>(
         routeData: routeData,
@@ -74,6 +86,10 @@ class _$AppRouter extends RootStackRouter {
           path: 'editProfile',
         ),
         RouteConfig(
+          BlogPageRoute.name,
+          path: 'blog',
+        ),
+        RouteConfig(
           AppScaffold.name,
           path: '/',
           children: [
@@ -112,6 +128,40 @@ class EditProfilePageRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'EditProfilePageRoute';
+}
+
+/// generated route for
+/// [BlogPageView]
+class BlogPageRoute extends PageRouteInfo<BlogPageRouteArgs> {
+  BlogPageRoute({
+    Key? key,
+    required String tag,
+  }) : super(
+          BlogPageRoute.name,
+          path: 'blog',
+          args: BlogPageRouteArgs(
+            key: key,
+            tag: tag,
+          ),
+        );
+
+  static const String name = 'BlogPageRoute';
+}
+
+class BlogPageRouteArgs {
+  const BlogPageRouteArgs({
+    this.key,
+    required this.tag,
+  });
+
+  final Key? key;
+
+  final String tag;
+
+  @override
+  String toString() {
+    return 'BlogPageRouteArgs{key: $key, tag: $tag}';
+  }
 }
 
 /// generated route for

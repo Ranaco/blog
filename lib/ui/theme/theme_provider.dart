@@ -81,13 +81,10 @@ class ThemeProvider extends ChangeNotifier {
     switch (_isDark) {
       case true:
         return darkTheme;
-        break;
       case false:
         return lightTheme;
-        break;
       default:
         return darkTheme;
-        break;
     }
   }
 }

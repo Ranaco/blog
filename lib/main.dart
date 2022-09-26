@@ -37,9 +37,12 @@ class BaseApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (_) => ThemeProvider(),
-        child: const BlogApp());
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<ThemeProvider>(create: (_) => ThemeProvider()),
+      ],
+      child: const BlogApp(),
+    );
   }
 }
 
@@ -48,15 +51,14 @@ class BlogApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _appRouter = locator<AppRouter>();
-    return Consumer(builder: (context, ThemeProvider themeProvider, child){
-      return MaterialApp.router(
-        theme: themeProvider.getTheme(),
-        routerDelegate: _appRouter.delegate(),
-        routeInformationParser: _appRouter.defaultRouteParser(),
-        routeInformationProvider: _appRouter.routeInfoProvider(),
-        debugShowCheckedModeBanner: false,
-      );
-    });
+    var themeProvider = Provider.of<ThemeProvider>(context);
+    var appRouter = locator<AppRouter>();
+    return MaterialApp.router(
+      theme: themeProvider.getTheme(),
+      routerDelegate: appRouter.delegate(),
+      routeInformationParser: appRouter.defaultRouteParser(),
+      routeInformationProvider: appRouter.routeInfoProvider(),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }
