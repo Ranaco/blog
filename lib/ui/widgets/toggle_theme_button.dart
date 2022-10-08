@@ -18,7 +18,7 @@ class ToggleThemeButton extends StatefulWidget {
 
 class _ToggleThemeButtonState extends State<ToggleThemeButton>  with SingleTickerProviderStateMixin{
 
-  late final _animationController;
+  late final AnimationController _animationController;
   @override
   void initState() {
     _animationController = AnimationController(vsync: this,  duration: const Duration(milliseconds: 500));
@@ -31,42 +31,48 @@ class _ToggleThemeButtonState extends State<ToggleThemeButton>  with SingleTicke
       onTap: widget.voidCallback,
       child: Container(
           width: 75,
-          height: 30,
+          height: 35,
           decoration: BoxDecoration(
               color: widget.isDark ? Constants.nord0 : Constants.ice0,
               borderRadius: const BorderRadius.all(Radius.circular(30))),
-          child: Stack(
-              children: [
-           SizedBox(
-             height: 30,
-             child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: const [
-                  AppIcon(AppIcons.moon),
-                  AppIcon(AppIcons.sun, size: 30,)
-                ],
-              ),
-           ),
-                SizedBox(
-                  height: 30,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                       widget.isDark ? const Expanded(child: SizedBox()) : const SizedBox(),
-                       AnimatedContainer(
-                        duration: const Duration(milliseconds: 400),
-                        height: 30,
-                         width: 30,
-                         decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: widget.isDark ? Constants.ice2 : Constants.nord0
-                         ),
-                       )
-                    ]
-                  ),
-                )
-          ])),
+          child: Padding(
+            padding: const EdgeInsets.all(2),
+            child: Stack(
+                children: [
+             SizedBox(
+               height: 35,
+               child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: const [
+                    AppIcon(AppIcons.moon, color: Constants.ice2,),
+                    AppIcon(AppIcons.sun, size: 30,)
+                  ],
+                ),
+             ),
+                  SizedBox(
+                    height: 35,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                         AnimatedContainer(
+                             duration: const Duration(milliseconds: 200),
+                             width: widget.isDark ? 40 : 0,
+                             child: const SizedBox()),
+                         AnimatedContainer(
+                          duration: const Duration(milliseconds: 400),
+                          height: 35,
+                           width: 30,
+                           decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: widget.isDark ? Constants.ice2 : Constants.nord0
+                           ),
+                         )
+                      ]
+                    ),
+                  )
+            ]),
+          )),
     );
   }
 }

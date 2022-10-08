@@ -26,8 +26,9 @@ class CustomAppbar extends StatelessWidget with PreferredSizeWidget {
                           ? Scaffold.of(context).closeDrawer()
                           : Scaffold.of(context).openDrawer();
                     },
-                    child: AppIcon(AppIcons.menu, color: ThemeProvider.useColorMode(Constants.ice1, Constants.nord0),))) : const SizedBox(),
-          ]),
+                  child: const AppIcon(AppIcons.menu, color: Colors.white,)))
+            : const SizedBox(),
+                    ]),
         ),
       ),
     );

@@ -66,6 +66,29 @@ class BlogPageView extends StatelessWidget {
                             ],
                           ))),
                 ),
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                     Container(
+                       color: Colors.blue,
+                       width: 30,
+                      child: RotatedBox(
+                        quarterTurns: 3,
+                        child: ListView(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          children: <Widget>[
+                          ],
+                         ),
+                      )
+                     ),
+                     Expanded(
+                       child: Container(),
+                     )
+                    ]
+                  ),
+                ),
               ],
             )),
           );

@@ -14,7 +14,7 @@ class CustomDrawer extends StatelessWidget{
         decoration: BoxDecoration(
           color: Colors.grey.withOpacity(0.3),
         ),
-        width: MediaQuery.of(context).size.width * (70/100),
+        width: MediaQuery.of(context).size.width * (80/100),
         height: MediaQuery.of(context).size.height,
         child: ClipRect(
           child: BackdropFilter(
@@ -22,7 +22,40 @@ class CustomDrawer extends StatelessWidget{
               sigmaX: 5,
               sigmaY: 5,
             ),
-            child: Container(),
+            child: Column(
+              children: [
+                 DrawerHeader(
+                   curve: Curves.bounceIn,
+                    child: Container(
+                      height: 150,
+                      width: 150,
+                      decoration:BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.black.withOpacity(0.1),
+                      ),
+                      child: ClipRect(
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaY: 5, sigmaX: 5),
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                  image: NetworkImage("https://picsum.photos/300/")
+                                )
+                              ),
+                            ),
+                          )
+                        ),
+                      ),
+                    ),
+                ),
+                ListTile(
+
+                )
+                ]
+            ),
           ),
         ),
       );

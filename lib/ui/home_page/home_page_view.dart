@@ -23,69 +23,72 @@ class HomePageView extends StatelessWidget {
         viewModelBuilder: () => HomePageViewModel(),
         builder: (context, model, child) {
           return Center(
-              child: Column(children: <Widget>[
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 25),
+                child: Column(children: <Widget>[
             const Text.rich(
-                textAlign: TextAlign.center,
-                TextSpan(
-                    style: TextStyle(), children: [
+                  textAlign: TextAlign.center,
                   TextSpan(
-                      text: "Discover",
-                      style: TextStyle(
-                        fontSize: 40,
-                        fontWeight: FontWeight.w500,
-                      )),
-                  TextSpan(
-                      text: "\nArticles, blogs and much more....",
-                      style: TextStyle(color: Colors.grey))
-                ])),
+                      style: TextStyle(), children: [
+                    TextSpan(
+                        text: "Discover",
+                        style: TextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.w500,
+                        )),
+                    TextSpan(
+                        text: "\nArticles, blogs and much more....",
+                        style: TextStyle(color: Colors.grey))
+                  ])),
             Padding(
-              padding: const EdgeInsets.only(top: 30),
-              child: SizedBox(
-                width: double.infinity,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: List.generate(
-                        5,
-                        (index) => GestureDetector(
-                            onTap: () {
-                              model.changeTab(index);
-                            },
-                            child: CustomTabs(
-                                label: 'This is the $index',
-                                isActive:
-                                    index == model.currentTab ? true : false))),
+                padding: const EdgeInsets.only(top: 30),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: List.generate(
+                          5,
+                          (index) => GestureDetector(
+                              onTap: () {
+                                model.changeTab(index);
+                              },
+                              child: CustomTabs(
+                                  label: 'This is the $index',
+                                  isActive:
+                                      index == model.currentTab ? true : false))),
+                    ),
                   ),
                 ),
-              ),
             ),
             Expanded(
-              child: SingleChildScrollView(
-                child: StaggeredGrid.count(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 4,
-                  crossAxisSpacing: 4,
-                  children: List.generate(images.length, (index) {
-                    return StaggeredGridTile.fit(
-                        crossAxisCellCount: 1,
-                        child: Hero(
-                          tag: images[index],
-                          child: Material(
-                            color: Colors.transparent,
-                            child: Post(
-                              callback: (){
-                                model.takeToProfilePage(images[index]);
-                              },
-                              postString: images[index],
-                                width: MediaQuery.of(context).size.width * 0.1),
-                          ),
-                        ));
-                  }),
+                child: SingleChildScrollView(
+                  child: StaggeredGrid.count(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 4,
+                    crossAxisSpacing: 4,
+                    children: List.generate(images.length, (index) {
+                      return StaggeredGridTile.fit(
+                          crossAxisCellCount: 1,
+                          child: Hero(
+                            tag: images[index],
+                            child: Material(
+                              color: Colors.transparent,
+                              child: Post(
+                                callback: (){
+                                  model.takeToProfilePage(images[index]);
+                                },
+                                postString: images[index],
+                                  width: MediaQuery.of(context).size.width * 0.1),
+                            ),
+                          ));
+                    }),
+                  ),
                 ),
-              ),
             )
-          ]));
+          ]),
+              ));
         });
   }
 }
