@@ -26,13 +26,19 @@ class _ToggleThemeButtonState extends State<ToggleThemeButton>  with SingleTicke
   }
 
   @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: widget.voidCallback,
       child: Container(
-          width: 75,
+          width: 76,
           height: 35,
           decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey, width: 1),
               color: widget.isDark ? Constants.nord0 : Constants.ice0,
               borderRadius: const BorderRadius.all(Radius.circular(30))),
           child: Padding(
@@ -60,7 +66,7 @@ class _ToggleThemeButtonState extends State<ToggleThemeButton>  with SingleTicke
                              width: widget.isDark ? 40 : 0,
                              child: const SizedBox()),
                          AnimatedContainer(
-                          duration: const Duration(milliseconds: 400),
+                          duration: const Duration(milliseconds: 200),
                           height: 35,
                            width: 30,
                            decoration: BoxDecoration(
